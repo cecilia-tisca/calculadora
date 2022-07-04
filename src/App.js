@@ -8,15 +8,17 @@ function App() {
 
   const updateCalc = value => {
     if (
-      ops.includes(value) && ops.includes(calc.slice(-1))
-    ){
+        ops.includes(value) && calc === '' ||
+        ops.includes(value) && ops.includes(calc.slice(-1)
+      )
+    ) {
       return;
     }
 
     setCalc(calc + value);
 
     if (!ops.includes(value)) {
-      setResult(eval(calc + value).toString())
+      setResult(eval(calc + value).toString());
     } 
 
   }
@@ -24,12 +26,12 @@ function App() {
   const createDigits = () => {
     const digits = [];
 
-    for (let i = 1; i < 10; i ++){
+    for (let i = 1; i < 10; i ++) {
       digits.push(
         <button 
-          onClick={() => updateCalc(i.toString())} 
-          key={i}> 
-          {i} 
+            onClick={() => updateCalc(i.toString())} 
+            key={i}> 
+            {i} 
         </button>
       )
     }
@@ -54,7 +56,7 @@ function App() {
     <div className="App">
       <div className="calculator">
         <div className="display">
-          {result ? <span>({ result })</span> : '' }
+          {result ? <span>({result})</span> : '' }
 
           { calc || "0"}
         </div>
